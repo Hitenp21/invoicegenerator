@@ -132,8 +132,8 @@ const InvoiceForm = () => {
             type="text"
             name="cashierName"
             id="cashierName"
-            value={cashierName }
-{/*             onChange={(event) => setCashierName(event.target.value)} */}
+            value = {cashierName}
+            // onChange={(event) => setCashierName(event.target.value)}
           />
           <label
             htmlFor="customerName"
