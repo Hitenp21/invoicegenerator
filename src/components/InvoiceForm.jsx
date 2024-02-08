@@ -15,7 +15,8 @@ const InvoiceForm = () => {
   const [discount, setDiscount] = useState('');
   const [tax, setTax] = useState('');
   const [invoiceNumber, setInvoiceNumber] = useState(1);
-  const [cashierName, setCashierName] = useState('');
+  // const [cashierName, setCashierName] = useState('');
+  const cashierName = "JAY NARAYAN DAIRY";
   const [customerName, setCustomerName] = useState('');
   const [items, setItems] = useState([
     {
@@ -131,8 +132,8 @@ const InvoiceForm = () => {
             type="text"
             name="cashierName"
             id="cashierName"
-            value="JAY NARAYAN DAIRY"
-            onChange={(event) => setCashierName(event.target.value)}
+            value={cashierName }
+{/*             onChange={(event) => setCashierName(event.target.value)} */}
           />
           <label
             htmlFor="customerName"
