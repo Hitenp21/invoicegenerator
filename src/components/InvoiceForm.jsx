@@ -15,6 +15,7 @@ const InvoiceForm = () => {
   const [discount, setDiscount] = useState('');
   const [tax, setTax] = useState('');
   const [invoiceNumber, setInvoiceNumber] = useState(1);
+  const [previousRemainPayment, setPreviousRemainPayment] = useState('');
   // const [cashierName, setCashierName] = useState('');
   const cashierName = "JAY NARAYAN DAIRY";
   const [customerName, setCustomerName] = useState('');
@@ -85,9 +86,11 @@ const InvoiceForm = () => {
       return prev + Number(curr.price * Math.floor(curr.qty));
     else return prev;
   }, 0);
+
   const taxRate = (tax * subtotal) / 100;
   const discountRate = (discount * subtotal) / 100;
-  const total = subtotal - discountRate + taxRate;
+  const prp =previousRemainPayment ? parseFloat(previousRemainPayment) : 0
+  const total = subtotal - discountRate + taxRate + prp;
 
   return (
     <form
@@ -194,9 +197,9 @@ const InvoiceForm = () => {
             </span>
           </div>
           <div className="flex w-full justify-between md:w-1/2">
-            <span className="font-bold">Tax:</span>
+            <span className="font-bold">PreviousRemainPayment:</span>
             <span>
-              ({tax || '0'}%)₹{taxRate.toFixed(2)}
+              ₹{previousRemainPayment}
             </span>
           </div>
           <div className="flex w-full justify-between border-t border-gray-900/10 pt-2 md:w-1/2">
@@ -223,32 +226,35 @@ const InvoiceForm = () => {
               cashierName,
               customerName,
               subtotal,
+              previousRemainPayment,
               taxRate,
               discountRate,
               total,
             }}
             items={items}
             onAddNextInvoice={addNextInvoiceHandler}
+            previousRemainPayment={previousRemainPayment}
+            setPreviousRemainPayment={setPreviousRemainPayment}
           />
           <div className="space-y-4 py-2">
             <div className="space-y-2">
               <label className="text-sm font-bold md:text-base" htmlFor="tax">
-                Tax rate:
+                Previous Remaining Payament :
               </label>
               <div className="flex items-center">
                 <input
                   className="w-full rounded-r-none bg-white shadow-sm"
                   type="number"
-                  name="tax"
-                  id="tax"
+                  name="previousRemainPayment"
+                  id="previousRemainPayment"
                   min="0.01"
                   step="0.01"
                   placeholder="0.0"
-                  value={tax}
-                  onChange={(event) => setTax(event.target.value)}
+                  value={previousRemainPayment}
+                  onChange={(event) => setPreviousRemainPayment(event.target.value)}
                 />
                 <span className="rounded-r-md bg-gray-200 py-2 px-4 text-gray-500 shadow-sm">
-                  %
+                  ₹
                 </span>
               </div>
             </div>
