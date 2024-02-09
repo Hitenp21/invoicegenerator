@@ -9,6 +9,8 @@ const InvoiceModal = ({
   invoiceInfo,
   items,
   onAddNextInvoice,
+  // previousRemainPayment,
+  // setPreviousRemainPayment,
 }) => {
   function closeModal() {
     setIsOpen(false);
@@ -81,6 +83,10 @@ const InvoiceModal = ({
       });
   };
 
+  const handlePreviousRemainPaymentChange = (event) => {
+    invoiceInfo.setPreviousRemainPayment(event.target.value);
+  };
+
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog
@@ -94,7 +100,7 @@ const InvoiceModal = ({
             enter="ease-out duration-300"
             enterFrom="opacity-0"
             enterTo="opacity-100"
-            leave="ease-in duration-200"
+            leave="ease-in duration-200"  
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
@@ -124,11 +130,11 @@ const InvoiceModal = ({
                 </h1>
                 <div className="mt-6">
                   <div className="mb-4 grid grid-cols-2">
-                    <span className="font-bold">Invoice Number:</span>
+                    <span className="font-bold">Invoice Number :</span>
                     <span>{invoiceInfo.invoiceNumber}</span>
-                    <span className="font-bold">Cashier:</span>
+                    <span className="font-bold">Cashier :</span>
                     <span>{invoiceInfo.cashierName}</span>
-                    <span className="font-bold">Customer:</span>
+                    <span className="font-bold">Customer :</span>
                     <span>{invoiceInfo.customerName}</span>
                   </div>
 
@@ -149,10 +155,10 @@ const InvoiceModal = ({
                             {item.qty}
                           </td>
                           <td className="min-w-[80px] text-right">
-                          ₹{Number(item.price).toFixed(2)}
+                            ₹{Number(item.price).toFixed(2)}
                           </td>
                           <td className="min-w-[90px] text-right">
-                          ₹{Number(item.price * item.qty).toFixed(2)}
+                            ₹{Number(item.price * item.qty).toFixed(2)}
                           </td>
                         </tr>
                       ))}
@@ -161,21 +167,25 @@ const InvoiceModal = ({
 
                   <div className="mt-4 flex flex-col items-end space-y-2">
                     <div className="flex w-full justify-between border-t border-black/10 pt-2">
-                      <span className="font-bold">Subtotal:</span>
+                      <span className="font-bold">Subtotal :</span>
                       <span>₹{invoiceInfo.subtotal.toFixed(2)}</span>
                     </div>
                     <div className="flex w-full justify-between">
-                      <span className="font-bold">Discount:</span>
+                      <span className="font-bold">Discount :</span>
                       <span>₹{invoiceInfo.discountRate.toFixed(2)}</span>
                     </div>
+                    {/* <div className="flex w-full justify-between">
+                      <span className="font-bold">PreviousRemainPayment:</span>
+                      <span>₹{invoiceInfo.previousRemainPayment}</span>
+                    </div> */}
                     <div className="flex w-full justify-between">
-                      <span className="font-bold">Tax:</span>
-                      <span>₹{invoiceInfo.taxRate.toFixed(2)}</span>
+                      <span className="font-bold">Previous Remaining Payment :</span>
+                      <span>₹{invoiceInfo.previousRemainPayment}</span>
                     </div>
                     <div className="flex w-full justify-between border-t border-black/10 py-2">
-                      <span className="font-bold">Total:</span>
+                      <span className="font-bold">Total :</span>
                       <span className="font-bold">
-                      ₹
+                        ₹
                         {invoiceInfo.total % 1 === 0
                           ? invoiceInfo.total
                           : invoiceInfo.total.toFixed(2)}
@@ -189,14 +199,12 @@ const InvoiceModal = ({
                   className="flex w-full items-center justify-center space-x-1 rounded-md border border-blue-500 py-2 text-sm text-blue-500 shadow-sm hover:bg-blue-500 hover:text-white"
                   onClick={SaveAsPDFHandler}
                 >
-                 
                   <span>Download</span>
                 </button>
                 <button
                   onClick={addNextInvoiceHandler}
                   className="flex w-full items-center justify-center space-x-1 rounded-md bg-blue-500 py-2 text-sm text-white shadow-sm hover:bg-blue-600"
                 >
-                  
                   <span>Next</span>
                 </button>
               </div>
