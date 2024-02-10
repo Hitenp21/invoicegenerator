@@ -12,7 +12,7 @@ const InvoiceModal = ({
   // previousRemainPayment,
   // setPreviousRemainPayment,
 }) => {
-  function closeModal() {
+  function closeModal() { 
     setIsOpen(false);
   }
 

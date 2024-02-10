@@ -23,8 +23,8 @@ const InvoiceForm = () => {
     {
       id: uid(6),
       name: '',
-      qty: 0,
-      price: '0.00',
+      qty: '',
+      price: '',
     },
   ]);
 
@@ -39,8 +39,8 @@ const InvoiceForm = () => {
       {
         id: uid(6),
         name: '',
-        qty: 0,
-        price: '0.00',
+        qty: '',
+        price: '',
       },
     ]);
   };
@@ -52,8 +52,8 @@ const InvoiceForm = () => {
       {
         id: id,
         name: '',
-        qty: 0,
-        price: '0.00',
+        qty: '',
+        price: '',
       },
     ]);
   };
@@ -83,7 +83,7 @@ const InvoiceForm = () => {
 
   const subtotal = items.reduce((prev, curr) => {
     if (curr.name.trim().length > 0)
-      return prev + Number(curr.price * Math.floor(curr.qty));
+      return prev + Number(curr.price * (curr.qty));
     else return prev;
   }, 0);
 

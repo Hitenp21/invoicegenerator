@@ -24,8 +24,10 @@ const InvoiceItem = ({ id, name, qty, price, onDeleteItem, onEdtiItem }) => {
         <InvoiceField
           onEditItem={(event) => onEdtiItem(event)}
           cellData={{
+            placeholder: '0',
             type: 'number',
-            min: '1',
+            min: '0.01',
+            step: '0.01',
             name: 'qty',
             id: id,
             value: qty,
@@ -37,6 +39,7 @@ const InvoiceItem = ({ id, name, qty, price, onDeleteItem, onEdtiItem }) => {
         <InvoiceField
           onEditItem={(event) => onEdtiItem(event)}
           cellData={{
+            placeholder: '0',
             className: 'text-right',
             type: 'number',
             min: '0.01',
