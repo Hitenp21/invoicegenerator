@@ -23,8 +23,8 @@ const InvoiceForm = () => {
     {
       id: uid(6),
       name: '',
-      qty: 1,
-      price: '1.00',
+      qty: 0,
+      price: '0.00',
     },
   ]);
 
@@ -39,8 +39,8 @@ const InvoiceForm = () => {
       {
         id: uid(6),
         name: '',
-        qty: 1,
-        price: '1.00',
+        qty: 0,
+        price: '0.00',
       },
     ]);
   };
@@ -52,8 +52,8 @@ const InvoiceForm = () => {
       {
         id: id,
         name: '',
-        qty: 1,
-        price: '1.00',
+        qty: 0,
+        price: '0.00',
       },
     ]);
   };
