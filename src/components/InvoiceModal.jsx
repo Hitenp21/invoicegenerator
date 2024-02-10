@@ -2,6 +2,11 @@ import React, { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { toPng } from 'html-to-image';
 import { jsPDF } from 'jspdf';
+const date = new Date();
+const today = date.toLocaleDateString('en-GB', {
+  month: 'numeric',
+  day: 'numeric',
+});
 
 const InvoiceModal = ({
   isOpen,
@@ -75,7 +80,7 @@ const InvoiceModal = ({
             pdf.addImage(imgData, imageType, 0, 0, pdfWidth, pageHeight);
           }
           // Output / Save
-          pdf.save(`invoice-${invoiceInfo.invoiceNumber}.pdf`);
+          pdf.save(`${invoiceInfo.invoiceNumber}-${invoiceInfo.customerName}-${today}.pdf`);
         };
       })
       .catch((error) => {
